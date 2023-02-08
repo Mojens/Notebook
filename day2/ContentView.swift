@@ -9,6 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     
+   @ObservedObject var fileManager = MyFileManager()
+    
+    
+    
    @State var myList = [
     Item(title: "First Thing",noteText:"first thing first rip uncle phil"),
     Item(title: "Next thing", noteText: "For real, you the only father that I ever knew")
