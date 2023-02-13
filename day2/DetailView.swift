@@ -14,9 +14,33 @@ struct DetailView: View {
 
     var body: some View {
         VStack {
-            TextField("",text : $title)
-            TextEditor(text : $noteText)
-                .foregroundColor(noteText == "Enter your text here" ? .gray : .black)
+            Spacer().frame(height: 10)
+            TextField("Title", text: $title)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+                    .frame(width: 300, height: 50, alignment: .center)
+                    .font(.title)
+                    .bold()
+                    .background(Color.clear)
+                    .border(Color.clear, width: 0)
+                    .onTapGesture {
+                        if title == "New Note" {
+                            title = ""
+                        }
+                    }
+            TextEditor(text: $noteText)
+                .foregroundColor(.black)
+                .padding()
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 150, alignment: .leading)
+                .onTapGesture {
+                    if noteText == "Enter your text here" {
+                        noteText = ""
+                    }
+                }
+                .background(Color.clear)
+                .border(Color.clear, width: 0)
+
+
             Spacer()
             Button(action: {
                 // Call the save method on the fileManager here

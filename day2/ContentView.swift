@@ -31,10 +31,8 @@ struct ContentView: View {
                        Image(systemName: "plus")
                    })
                }
-
-               .frame(maxHeight: .infinity)
            }
-           .padding()
+         
        }
 }
 
