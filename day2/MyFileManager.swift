@@ -13,8 +13,8 @@ class MyFileManager: ObservableObject{
     let arrayKey = "key"
     
     init() {
-        myList.append(Item(title: "Note 1", noteText: "text 1"))
-        myList.append(Item(title: "Note 2", noteText: "text 2"))
+        myList.append(Item(title: "Groceries", noteText: "Curry, Potato, Apples, Chicken, Toiletpaper, Milk"))
+        myList.append(Item(title: "My Favorite Songs", noteText: "Fayrouz - Sa'alouni Al Nas, Indila - Tourner Dans Le Vide, Indila - Dernière Danse"))
         save()
         read()
     }
