@@ -9,19 +9,19 @@ import Foundation
 class MyFileManager: ObservableObject{
     
     let userDefaults = UserDefaults.standard
-    @Published var items = [Item]() //Our local "Database"
+    @Published var myList = [Item]() //Our local "Database"
     let arrayKey = "key"
     
     init() {
-        items.append(Item(title: "Note 1", noteText: "text 1"))
-        items.append(Item(title: "Note 2", noteText: "text 2"))
+        myList.append(Item(title: "Note 1", noteText: "text 1"))
+        myList.append(Item(title: "Note 2", noteText: "text 2"))
         save()
         read()
     }
     
     func save(){
         do{
-            let encodedData = try JSONEncoder().encode(items)
+            let encodedData = try JSONEncoder().encode(myList)
             userDefaults.set(encodedData, forKey: arrayKey)
             
         }catch{
@@ -34,8 +34,8 @@ class MyFileManager: ObservableObject{
             
             do{
                 let results = try JSONDecoder().decode([Item].self, from: result)
-                self.items = results
-                for i in items {
+                self.myList = results
+                for i in myList {
                     print(i) // for debugging
                 }
             } catch{

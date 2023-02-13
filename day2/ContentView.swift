@@ -11,29 +11,31 @@ struct ContentView: View {
     
    @ObservedObject var fileManager = MyFileManager()
     
-    
-    
-   @State var myList = [
-    Item(title: "First Thing",noteText:"first thing first rip uncle phil"),
-    Item(title: "Next thing", noteText: "For real, you the only father that I ever knew")
-   ]
-    
-    
+    init() {
+            fileManager.read()
+        }
     
     var body: some View {
-        VStack {
-            NavigationView{
-                List($myList) { item in
-                    NavigationLink(destination: DetailView(title: item.title, noteText: item.noteText)) {
-                        Text(item.title.wrappedValue)
-                    }
-                }
-            }
+           VStack {
+               NavigationView{
+                   List($fileManager.myList) { item in
+                       NavigationLink(destination: DetailView(title: item.title, noteText: item.noteText, fileManager: fileManager)) {
+                           Text(item.title.wrappedValue)
+                       }
+                   }
+                   .navigationBarTitle("My Notes")
+                   .navigationBarItems(trailing: Button(action: {
+                       self.fileManager.myList.append(Item(title: "New Note", noteText: "Enter your text here"))
+                       fileManager.save()
+                   }) {
+                       Image(systemName: "plus")
+                   })
+               }
 
-            .frame(maxHeight: .infinity)
-        }
-        .padding()
-    }
+               .frame(maxHeight: .infinity)
+           }
+           .padding()
+       }
 }
 
 struct Item:Identifiable, Codable{
