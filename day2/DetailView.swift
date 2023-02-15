@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct DetailView: View {
     @Binding var title:String
     @Binding var noteText:String
     @ObservedObject var fileManager: MyFileManager
+    @EnvironmentObject var dataManager: DataManager
 
     var body: some View {
         VStack {
@@ -58,5 +60,6 @@ struct DetailView_Previews: PreviewProvider {
         DetailView(title: .constant("example"),
                    noteText: .constant("example note text"),
                    fileManager: MyFileManager())
+        .environmentObject(DataManager())
     }
 }

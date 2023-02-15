@@ -6,13 +6,30 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct ContentView: View {
-    
+    @EnvironmentObject var dataManager: DataManager
    @ObservedObject var fileManager = MyFileManager()
+    
+    
     
     var body: some View {
            VStack {
+               NavigationView{
+                   List($dataManager.myList) { item in
+                       NavigationLink(destination: DetailView(title: item.title, noteText: item.noteText, fileManager: fileManager)) {
+                           Text(item.title.wrappedValue)
+                       }
+                   }
+                   .navigationBarTitle("My Notes")
+                   .navigationBarItems(trailing: Button(action: {
+                       dataManager.addNote(title: "New Note", noteText: "Enter your text here")
+                   }) {
+                       Image(systemName: "plus")
+                   })
+               }
+               /*
                NavigationView{
                    List($fileManager.myList) { item in
                        NavigationLink(destination: DetailView(title: item.title, noteText: item.noteText, fileManager: fileManager)) {
@@ -27,6 +44,7 @@ struct ContentView: View {
                        Image(systemName: "plus")
                    })
                }
+               */
            }
          
        }
@@ -41,5 +59,6 @@ struct Item:Identifiable, Codable{
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(DataManager())
     }
 }

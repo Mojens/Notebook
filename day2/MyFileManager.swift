@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Firebase
 class MyFileManager: ObservableObject{
     
     let userDefaults = UserDefaults.standard
@@ -19,6 +20,7 @@ class MyFileManager: ObservableObject{
     func addItem(title:String, noteText:String){
         myList.append(Item(title: title, noteText: noteText))
         save()
+        
     }
     
     func save(){
