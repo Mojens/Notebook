@@ -46,11 +46,11 @@ struct DetailView: View {
             Spacer()
             Button(action: {
                 self.fileManager.save()
-                self.fileManager.read()
             }) {
                 Text("Save")
             }
             .padding()
+
         }
     }
 }

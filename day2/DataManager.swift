@@ -40,14 +40,9 @@ class DataManager: ObservableObject {
             }
         }
     }
-    
-    func addNote(title: String, noteText: String){
+    func addItem(title: String, noteText: String){
         let db = Firestore.firestore()
-        let ref = db.collection("Notes").document(title)
-        ref.setData(["title":title, "noteText":noteText]){ error in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-        }
+        let ref = db.collection("Notes").document()
+        ref.setData(["title": title, "noteText": noteText])
     }
 }
