@@ -21,7 +21,7 @@ struct ContentView: View {
                    }
                    .navigationBarTitle("My Notes")
                    .navigationBarItems(trailing: Button(action: {
-                       self.fileManager.myList.append(Item(title: "New Note", noteText: "Enter your text here"))
+                       fileManager.addItem(title: "New Note", noteText: "Enter your text here")
                        fileManager.save()
                    }) {
                        Image(systemName: "plus")

@@ -16,6 +16,11 @@ class MyFileManager: ObservableObject{
    read()
     }
     
+    func addItem(title:String, noteText:String){
+        myList.append(Item(title: title, noteText: noteText))
+        save()
+    }
+    
     func save(){
         do{
             let encodedData = try JSONEncoder().encode(myList)

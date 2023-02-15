@@ -43,7 +43,6 @@ struct DetailView: View {
 
             Spacer()
             Button(action: {
-                // Call the save method on the fileManager here
                 self.fileManager.save()
                 self.fileManager.read()
             }) {
