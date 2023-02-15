@@ -11,10 +11,6 @@ struct ContentView: View {
     
    @ObservedObject var fileManager = MyFileManager()
     
-    init() {
-            fileManager.read()
-        }
-    
     var body: some View {
            VStack {
                NavigationView{
